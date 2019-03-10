@@ -2,6 +2,7 @@ package com.varun.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,8 +26,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/addFeedback")
-	public String addFeedBack() {
+	public String addFeedBack(@ModelAttribute Feedback fb) {
 		System.out.println("In add feedback");
+		feedBackService.addFeedBack(fb);
 		return "redirect:/feedback";
 	}
 }

@@ -1,8 +1,13 @@
 package com.varun.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Feedback {
 	private String name;
 	private String gender;
+	@Id
 	private String email;
 	private String website;
 	private int code;

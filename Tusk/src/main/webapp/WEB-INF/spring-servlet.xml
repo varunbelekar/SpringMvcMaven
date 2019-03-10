@@ -23,10 +23,30 @@
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="org.postgresql.Driver"></property>
+		<property name="url"
+			value="jdbc:postgresql://localhost:5432/test"></property>
+		<property name="username" value="postgres"></property>
+		<property name="password" value="pwd703532"></property>
+	</bean>
 	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="dataSource" ref="ds"></property>
+	</bean>
 	
-	<bean id="feedbackservice" class="com.varun.service.FeedBackService">
+	<bean id="feedBackdao" class="com.varun.dao.FeedbackDao">
+		<property name="template" ref="hibernateTemplate"></property>
+	</bean>
 	
+	<bean id="feedBackService" class="com.varun.service.FeedBackService">
+		<property name="dao" ref="feedBackdao"></property>
+	</bean>
+
 	
+
 	</bean>
 </beans>
